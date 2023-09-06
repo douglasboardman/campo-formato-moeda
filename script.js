@@ -9,9 +9,15 @@ document.querySelector('#input-valor').addEventListener("keydown", function(e){
     let val = input.value;
     let key = e.key;
     let regex = /[0-9]/;
+    /* console.log(key); */
     if (!regex.test(key) & key != 'Backspace') {
         input.value = val;
         return;
+    } else if (key == 'Backspace') {
+        let arr = val.split('');
+        arr.splice(arr.length - 1);
+        val = arr.join('');
+        //console.log(val)
     } else {
         val = val + key;
     }
@@ -54,6 +60,12 @@ document.querySelector('#input-valor').addEventListener("keydown", function(e){
             valor = str + valor.substr(l - 2, 2);
             input.value = valor;
         }
+    } else {
+        let z = '0';
+        let str = z.repeat(3 - valor.length) + valor;
+        valor = str[0] + ',' + str.substr(1, 2);
+        console.log(valor);
+        input.value = valor;
     }
 });
 
